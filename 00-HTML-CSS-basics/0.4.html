@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    
+    <form action="" method="">
+        <div>
+            <label for="Nombre">Nombre</label>
+            <input type="text" name="Nombre" required minlength="3" maxlength="13">
+
+            <label for="Nombre">Apellido</label>
+            <input type="text" name="Apellido" required minlength="3" maxlength="13">
+        </div>
+        
+        <div>
+            <label for="Email">Email</label>
+            <input type="email" name="Email" required minlength="3" maxlength="30">
+
+            <label for="Fecha">Fecha de Nacimiento</label>
+            <input type="date" name="Fecha" required>
+        </div>
+
+        <div>
+            <label for="Descripcion">Descripcion</label>
+            <textarea name="Descripcion" id="" cols="15" rows="3" required maxlength="300"></textarea>
+
+            <label for="Deporte">Deporte Favorito</label>
+            <select name="Deporte" id="" required>
+                <option value="" selected>Seleccione el deporte favorito</option>
+                <option value="Football">Football</option>
+                <option value="Handball">Handball</option>
+                <option value="Ajedrez">Ajedrez</option>
+                <option value="Voleyball">Voleyball</option>
+            </select>
+
+            
+        </div>
+
+        <div>
+            <input type="reset" title="Borrar">
+            <input type="submit" title="Aceptar">
+        </div>      
+
+    </form>
+</body>
+</html>
