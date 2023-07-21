@@ -64,6 +64,11 @@
 }
 .sobreimagen{
   display: none;
+  padding: 0.3rem;
+  width: calc(100% - 1.2rem);
+  height: 50%;
+  background: rgba(82, 82, 82, 0.767);
+  color:white;
 }
 .absolute{
   position: absolute;
@@ -72,13 +77,8 @@
 
 
 
-.imagen:hover .sobreimagen{
+.divDeImagen:hover .sobreimagen{
   display: block;
-  width: calc(100% - 1.2rem);
-  height: 50%;
-  padding: 0.3rem;
-  background: rgba(82, 82, 82, 0.767);
-  color:white;
 }
 
 

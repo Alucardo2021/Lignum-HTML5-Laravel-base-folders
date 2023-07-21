@@ -1,0 +1,62 @@
+.section{
+    text-align: center;
+    width: 100%;
+    height:40%;
+}
+#sectionHelloWorld {
+    opacity: 0;
+}
+
+.contentbox{
+    border: 0.5px black solid;
+    background: rgb(191, 255, 255);
+    width: 60%;
+    height: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.flexBoton{
+    height: 20%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 3%;
+}
+
+.boton{
+    width: 35%;
+}
+
+/* min 320
+tab min 768
+note 1024
+plus 1024 */
+
+
+@media (min-width: 320px) {
+    html{
+        font-size: 35px;
+    }
+
+    .contentbox{
+
+        width: 90%;
+        height: 10%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media (min-width: 768px) {
+    html{
+        font-size: 55px;
+    }
+}
+
+@media (min-width: 1024px) {
+    html{
+        font-size: 60px;
+    }
+    
+}
