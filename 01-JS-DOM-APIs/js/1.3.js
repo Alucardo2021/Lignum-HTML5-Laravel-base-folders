@@ -16,8 +16,10 @@ function Alerta(){
 }
 
 
-async function GetSuper(){
-    let monstruos = await fetch('https://www.dnd5eapi.co/api/monsters/' , {
+let monstruos;
+
+async function AlCargar(){
+    monstruos = await fetch('https://www.dnd5eapi.co/api/monsters/' , {
         method: "GET",
         headers: {
             'Content-Type': 'application/json'
@@ -25,9 +27,26 @@ async function GetSuper(){
         }
     })
    .then(response => response.json());
+}
 
+async function GetMonstruo(){
+   let random = parseInt(Math.random() *(334 - 1 + 1) + 1);
 
-   let section =  document.getElementById('sectionNombres');
+   let monstruo = await fetch('https://www.dnd5eapi.co'+ monstruos.results[random].url , {
+    method: "GET",
+    headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+    }
+    })
+    .then(response => response.json());
 
-   section.innerText=(monstruos.results[parseInt(Math.random() *(334 - 1 + 1) + 1)].name);
+    document.getElementById('pName').innerText ='Name: '+ monstruo.name;
+    document.getElementById('pAlignment').innerText ='Alignment: '+ monstruo.alignment;
+    document.getElementById('pType').innerText ='Type: '+ monstruo.type;
+    document.getElementById('pSize').innerText ='Size: '+ monstruo.size;
+
+   
+   console.log(monstruos.results[random])
+   console.log(monstruo);
 }

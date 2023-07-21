@@ -28,10 +28,9 @@
     width: 35%;
 }
 
-/* min 320
-tab min 768
-note 1024
-plus 1024 */
+.MonsterInfo{
+    font-size: 40px;
+}
 
 
 @media (min-width: 320px) {

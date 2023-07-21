@@ -8,7 +8,7 @@
     
     <title>JS</title>
 </head>
-<body onload="Fade()">
+<body onload="Fade(), AlCargar()">
     
     <header>
 
@@ -17,12 +17,16 @@
             <div class="contentbox">
                 <section class="section" id="sectionNombres">
                     <h3>JS-DOM-APIs</h3>
+                    <p class="MonsterInfo" id="pName">Name:</p>
+                    <p class="MonsterInfo" id="pAlignment">Alignment:</p>
+                    <p class="MonsterInfo" id="pType">Type:</p>
+                    <p class="MonsterInfo" id="pSize">Size:</p>           
                 </section>
                 <section class="section" id="sectionHelloWorld">
                     <h4>Hello World</h4>
                 </section>
                 <div class="flexBoton">
-                    <button class="boton" type="button" onclick="GetSuper()">No Apretar</button>
+                    <button class="boton" type="button" onclick="GetMonstruo()">No Apretar</button>
                 </div>                
             </div>
     </main>
