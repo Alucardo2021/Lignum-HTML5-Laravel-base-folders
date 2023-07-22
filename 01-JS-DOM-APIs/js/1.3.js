@@ -1,4 +1,4 @@
-function Fade() {
+/* function Fade() {
     let section =  document.getElementById('sectionHelloWorld');
     
     let opacity = 0;
@@ -13,7 +13,7 @@ function Fade() {
 
 function Alerta(){
     alert("Te estás portando mal, serás castigada...")
-}
+} */
 
 
 let monstruos;
@@ -41,12 +41,22 @@ async function GetMonstruo(){
     })
     .then(response => response.json());
 
-    document.getElementById('pName').innerText ='Name: '+ monstruo.name;
-    document.getElementById('pAlignment').innerText ='Alignment: '+ monstruo.alignment;
-    document.getElementById('pType').innerText ='Type: '+ monstruo.type;
-    document.getElementById('pSize').innerText ='Size: '+ monstruo.size;
+    ModificarHtml(monstruo);
 
    
    console.log(monstruos.results[random])
    console.log(monstruo);
+}
+
+function ModificarHtml(monstruo){
+    document.getElementById('pName').innerText ='Name: '+ monstruo.name;
+    document.getElementById('pAlignment').innerText ='Alignment: '+ monstruo.alignment;
+    document.getElementById('pType').innerText ='Type: '+ monstruo.type;
+    document.getElementById('pSize').innerText ='Size: '+ monstruo.size;
+    document.getElementById('pStatStr').innerText ='STR: '+ monstruo.strength; 
+    document.getElementById('pStatDex').innerText ='DEX: '+ monstruo.dexterity; 
+    document.getElementById('pStatCon').innerText ='CON: '+ monstruo.constitution; 
+    document.getElementById('pStatInt').innerText ='INT: '+ monstruo.intelligence; 
+    document.getElementById('pStatWis').innerText ='WIS: '+ monstruo.wisdom; 
+    document.getElementById('pStatCha').innerText ='CHA: '+ monstruo.charisma; 
 }
