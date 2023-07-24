@@ -1,0 +1,110 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+
+
+.container{
+    background: lightblue; 
+    width: calc(100% - 10px);
+    margin: 5px;
+}
+
+.section{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.tablaContainer{
+    overflow-y: scroll;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5px;
+}
+
+
+#tablaRepositorios{
+    width: 100%;
+}
+
+#tablaRepositorios, #tablaRepositorios > *, #tablaRepositorios > * > *, #tablaRepositorios > * > * >* {
+    border: 0.001px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+}
+
+
+@media (min-width: 320px) {
+    html{
+        font-size: 15px;
+    }
+
+    .container{
+        height: 25rem;
+    }
+    
+    .tablaContainer{
+        
+        height: 20rem;
+        font-size: 9px;
+        
+    }
+
+
+    
+}
+
+@media (min-width: 768px) {
+    html{
+        font-size: 30px;
+    }
+ 
+    .container{
+        height: 13.55rem;
+    }
+
+    .searchContainer{
+        display: flex;  
+        align-items: center;
+        justify-content: center;
+        margin-left: 40px;
+    }
+    
+    .tablaContainer{
+        
+        height: 10rem;
+        font-size: 20px;
+        
+    }
+
+}
+
+@media (min-width: 1024px) {
+    html{
+        font-size: 60px;
+    }
+
+    html{
+        font-size: 30px;
+    }
+ 
+    .container{
+        height: 13.55rem;
+    }
+
+    .searchContainer{
+        display: flex;  
+        align-items: center;
+        justify-content: center;
+        margin-left: 40px;
+    }
+
+    .tablaContainer{
+       
+        height: 10rem;
+        font-size: 20px;
+        
+    }
+}

@@ -117,3 +117,44 @@ section>p{
 *[class*="a"]:not([class$="r"]){
     background: blue;
 }
+
+@media (min-width: 320px) {
+
+
+    section>header{
+        margin-top: 7px;
+    }
+}
+
+@media (min-width: 768px) {
+
+
+    section>header{
+        margin-top: 14px;
+    }
+
+    section>header,section>footer {
+        height: 19%;   
+    }
+    
+    section>article {
+        height: 37%;
+    }
+    
+}
+
+@media (min-width: 1024px) {
+
+
+    section>header{
+        margin-top: 17px;
+    }
+
+    section>header,section>footer {
+        height: 18%;   
+    }
+    
+    section>article {
+        height: 36%;
+    }
+}
