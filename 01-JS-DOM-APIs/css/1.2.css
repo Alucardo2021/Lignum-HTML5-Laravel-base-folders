@@ -3,17 +3,14 @@
     width: 100%;
     height:40%;
 }
-#sectionHelloWorld {
-    opacity: 0;
-}
 
 .contentbox{
     border: 0.5px black solid;
     background: rgb(191, 255, 255);
-    width: 60%;
+    width: 90%;
     height: 10%;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .flexBoton{
@@ -28,23 +25,9 @@
     width: 35%;
 }
 
-/* min 320
-tab min 768
-note 1024
-plus 1024 */
-
-
 @media (min-width: 320px) {
     html{
         font-size: 35px;
-    }
-
-    .contentbox{
-
-        width: 90%;
-        height: 10%;
-        margin-left: 5%;
-        margin-right: 5%;
     }
 }
 

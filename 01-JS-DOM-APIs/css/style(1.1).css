@@ -2,36 +2,22 @@
     text-align: center;
     
 }
-#sectionHelloWorld {
-    opacity: 0;
-}
-
 .contentbox{
     border: 0.5px black solid;
     background: paleturquoise;
-    width: 60%;
-    height: 30%;
-    margin-left: 20%;
-    margin-right: 20%;
+    width: 90%;
+    height: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .flex{
     display: flex;
 }
 
-
-
 @media (min-width: 320px) {
     html{
         font-size: 35px;
-    }
-
-    .contentbox{
-
-        width: 90%;
-        height: 10%;
-        margin-left: 5%;
-        margin-right: 5%;
     }
 }
 
@@ -44,6 +30,5 @@
 @media (min-width: 1024px) {
     html{
         font-size: 60px;
-    }
-    
+    }    
 }

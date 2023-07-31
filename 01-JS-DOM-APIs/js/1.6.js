@@ -1,40 +1,24 @@
 async function buscar(){
-    if (document.getElementById('buscador').value != '') {
-        console.log(document.getElementById('buscador').value)
+    
+        let buscador = document.getElementById('buscador').value;
 
-        let repositorios = await fetch('https://api.github.com/search/repositories?q='+document.getElementById('buscador').value  , {
+        let repositorios = await fetch('https://api.github.com/search/repositories?q=' + buscador  , {
             method: "GET",
-            tablaHeaders: {
+            Headers: {
                 'Content-Type': 'application/json'
             }
         }).then(response => response.json());     
 
-        /* listarRepositorios(repositorios); */
-
         crearTablaDeRepositorios(repositorios);
-             
-    }  
+
 }
-
-function listarRepositorios(repositorios) {
-    let lista = document.getElementById('listaDeRepositorios');
-
-    lista.innerHTML = '';
-
-    for (let index = 0; index < repositorios.total_count; index++) {
-        lista.innerHTML += '<li class="listItem">'+repositorios.items[index].id+' | '+repositorios.items[index].node_id+' | '+repositorios.items[index].name+'</li>';
-                
-    } 
-    
-}
-
 
 function crearTablaDeRepositorios(repositorios){
 
     let tablaBody = document.getElementById('tablaBody');
     tablaBody.innerHTML =' ';
 
-    for (let index = 0; index < repositorios.total_count; index++) {
+    for (let index = 1; index < repositorios.total_count; index++) {
             
         let tablaRow = document.createElement('tr');
         tablaRow.setAttribute('class', 'tablaRow');
@@ -53,6 +37,7 @@ function crearTablaDeRepositorios(repositorios){
 
         tablaBody.appendChild(tablaRow);
 
+        
             
     }      
 }
@@ -83,6 +68,6 @@ function generarTabla(){
 
     tabla.appendChild(tablaHeader);
     tabla.appendChild(tablaBody);
-    document.getElementById('listaContainer').appendChild(tabla);
+    document.getElementById('tablaContainer').appendChild(tabla);
 
 }

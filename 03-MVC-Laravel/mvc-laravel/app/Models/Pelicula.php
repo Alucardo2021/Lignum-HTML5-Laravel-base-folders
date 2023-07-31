@@ -13,4 +13,8 @@ class Pelicula extends Model
 
     protected $table = "Pelicula";
     protected $primaryKey = "PeliculaID";
+
+    public function ActorPrincipal(){
+        return $this->belongsTo('\App\Models\Actor', 'ActorPrincipalID', 'ActorID');
+    }
 }

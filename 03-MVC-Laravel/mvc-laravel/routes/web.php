@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ActorController;
+use App\Models\Actor;
+use App\Models\Pelicula;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index',[
+        'peliculas' => Pelicula::all(),
+        'actores' => Actor::all()
+    ]);
 });
+
+
+Route::post('/create/actor', [ActorController::class, 'create']);
+
+Route::get('%all/actor', [ActorController::class, 'getAllActores']);

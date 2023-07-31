@@ -4,8 +4,6 @@
     text-align: center;
 }
 
-
-
 .container{
     background: lightblue; 
     width: calc(100% - 10px);
@@ -18,13 +16,12 @@
 }
 
 .tablaContainer{
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 5px;
 }
-
 
 #tablaRepositorios{
     width: 100%;
@@ -34,7 +31,6 @@
     border: 0.001px solid rgb(0, 0, 0);
     border-collapse: collapse;
 }
-
 
 @media (min-width: 320px) {
     html{
@@ -46,14 +42,9 @@
     }
     
     .tablaContainer{
-        
         height: 20rem;
         font-size: 9px;
-        
-    }
-
-
-    
+    }    
 }
 
 @media (min-width: 768px) {
@@ -73,19 +64,12 @@
     }
     
     .tablaContainer{
-        
         height: 10rem;
         font-size: 20px;
-        
     }
-
 }
 
 @media (min-width: 1024px) {
-    html{
-        font-size: 60px;
-    }
-
     html{
         font-size: 30px;
     }
@@ -102,9 +86,7 @@
     }
 
     .tablaContainer{
-       
         height: 10rem;
         font-size: 20px;
-        
     }
 }

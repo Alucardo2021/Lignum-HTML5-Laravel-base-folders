@@ -1,6 +1,5 @@
 function Fade() {
     let section =  document.getElementById('sectionHelloWorld');
-    
     let opacity = 0;
     let fadeIn = setInterval(() => {
          if (opacity >= 1) {

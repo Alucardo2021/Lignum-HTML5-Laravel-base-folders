@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/1.3.css">
     <script src="./js/1.3.js"></script>
-    
     <title>JS</title>
 </head>
-<body onload="/* Fade() ,*/ AlCargar()">
+<body onload="AlCargar()" id="body">
     
     <header>
 
@@ -25,19 +24,19 @@
                             <p class="MonsterInfo" id="pSize">Size:</p>       
                         </div>
                         <div class="column half">
-                            <p class="MonsterInfo" id="pStats">Stats: </p>
+                            <p class="pMonsterStatTitle" id="">Stats: </p>
                             <div class="flex">
-                                <div class="column half ">
-                                    <p class="MonsterInfo MonsterStat" id="pStatStr">STR: </p>
-                                    <p class="MonsterInfo MonsterStat" id="pStatDex">DEX: </p>
-                                    <p class="MonsterInfo MonsterStat" id="pStatCon">CON: </p>
+                                <div class="column half mStats">
+                                    <p class="MonsterStat" id="pStatStr">STR: </p>
+                                    <p class="MonsterStat" id="pStatDex">DEX: </p>
+                                    <p class="MonsterStat" id="pStatCon">CON: </p>
                                     
                                 </div>
-                                <div class="column half ">
+                                <div class="column half mStats">
                                     
-                                    <p class="MonsterInfo MonsterStat" id="pStatInt">INT: </p>
-                                    <p class="MonsterInfo MonsterStat" id="pStatWis">WIS: </p>
-                                    <p class="MonsterInfo MonsterStat" id="pStatCha">CHA: </p>
+                                    <p class="MonsterStat" id="pStatInt">INT: </p>
+                                    <p class="MonsterStat" id="pStatWis">WIS: </p>
+                                    <p class="MonsterStat" id="pStatCha">CHA: </p>
                                 </div>
                             </div>
                             
@@ -49,15 +48,10 @@
                         <button class="boton" type="button" onclick="GetMonstruo()">No Apretar</button>
                     </div> 
                 </section>
-               <!--  <section class="section" id="sectionHelloWorld">
-                    <h4>Hello World</h4>
-                </section> -->
-                            
             </div>
     </main>
     <footer>
 
     </footer>
-
 </body>
 </html>

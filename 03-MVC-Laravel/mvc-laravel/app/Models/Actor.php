@@ -13,4 +13,9 @@ class Actor extends Model
 
     protected $table = "Actor";
     protected $primaryKey = "ActorID";
+
+    public function Peliculas(){
+        return $this->hasMany('\App\Models\Pelicula','ActorPrincipalID','ActorID');
+    }
+
 }
