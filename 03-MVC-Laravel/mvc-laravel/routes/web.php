@@ -24,6 +24,6 @@ Route::get('/', function () {
 });
 
 
-Route::post('/create/actor', [ActorController::class, 'create']);
+Route::post('/actor/create', [ActorController::class, 'create']);
 
-Route::get('%all/actor', [ActorController::class, 'getAllActores']);
+Route::get('/actor/all', [ActorController::class, 'getAllActores']);

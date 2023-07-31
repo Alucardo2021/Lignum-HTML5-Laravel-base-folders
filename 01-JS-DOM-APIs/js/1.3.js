@@ -9,7 +9,9 @@ async function AlCargar() {
                 }
             })
             .then(response => response.json());
+ 
     } catch (error) {
+        console.log(error);
         ModificarHtml(null);
     }
 }
@@ -29,8 +31,6 @@ async function GetMonstruo() {
     } catch (error) {
         ModificarHtml(null);
     }
-
-
 }
 
 function ModificarHtml(monstruo) {

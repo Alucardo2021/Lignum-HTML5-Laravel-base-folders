@@ -10,7 +10,7 @@ class ActorController extends Controller
 
     public function create(Request $request){
 
-        $validated = $request->validate([
+        /* $validated = $request->validate([
             'nombre' => 'required|max:50|min:3',
             'fecha' => 'required'
         ]);
@@ -20,7 +20,7 @@ class ActorController extends Controller
         $actor->Nombre = $validated['nombre'] ?? null;
         $actor->FechaNacimiento = $validated['fecha'] ?? null;
         $actor->save();
-
+ */
         return 1;
     }
 

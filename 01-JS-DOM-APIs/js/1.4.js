@@ -8,7 +8,8 @@ async function buscar(){
                 'Content-Type': 'application/json'
             }
         }).then(response => response.json());     
-
+        
+        console.log(repositorios);
         listarRepositorios(repositorios);
              
     }  
