@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('Imagen');
             $table->unsignedBigInteger('ActorPrincipalID');
             $table->foreign('ActorPrincipalID')->references('ActorID')->on('Actor');
+            $table->boolean('Favorito')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

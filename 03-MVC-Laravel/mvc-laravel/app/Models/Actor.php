@@ -15,7 +15,7 @@ class Actor extends Model
     protected $primaryKey = "ActorID";
 
     public function Peliculas(){
-        return $this->hasMany('\App\Models\Pelicula','ActorPrincipalID','ActorID');
+        return $this->hasMany('\App\Models\Pelicula','ActorPrincipalID','ActorID')->where('deleted_at', null);
     }
 
 }

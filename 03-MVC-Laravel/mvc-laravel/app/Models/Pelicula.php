@@ -15,6 +15,6 @@ class Pelicula extends Model
     protected $primaryKey = "PeliculaID";
 
     public function ActorPrincipal(){
-        return $this->belongsTo('\App\Models\Actor', 'ActorPrincipalID', 'ActorID');
+        return $this->belongsTo('\App\Models\Actor', 'ActorPrincipalID', 'ActorID')->where('deleted_at', null);
     }
 }

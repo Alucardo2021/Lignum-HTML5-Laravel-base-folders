@@ -25,5 +25,8 @@ Route::get('/', function () {
 
 
 Route::post('/actor/create', [ActorController::class, 'create']);
+Route::post('/actor/delete', [ActorController::class, 'delete']);
 
+Route::get('/actor/find', [ActorController::class, 'find']);
+Route::post('/actor/edit', [ActorController::class, 'edit']);
 Route::get('/actor/all', [ActorController::class, 'getAllActores']);
