@@ -21,7 +21,7 @@ class PeliculaFactory extends Factory
         return [
             'Titulo' => fake()->words(random_int(1, 3), true),
             'Año' => fake()->year(),
-            'Duracion' => fake()->time(),
+            'Duracion' => fake()->time('H:i'),
             'Sinopsis' => fake()->text(),
             'Imagen' => fake()->filePath(),
             'ActorPrincipalID' => Actor::all()->random()->ActorID

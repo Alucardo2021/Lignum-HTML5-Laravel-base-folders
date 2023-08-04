@@ -42,6 +42,7 @@
                     <th scope="col">Nombre de Actor Principal</th>
                     <th scope="col">Año de Lanzamiento</th>
                     <th scope="col">Duracion</th>
+                    <th scope="col">Imagen</th>
                     <th scope="col">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -65,6 +66,14 @@
 
                         <td>{{ $pelicula->Año }}</td>
                         <td>{{ $pelicula->Duracion }}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                </svg>
+                            </button>
+                        </td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -268,137 +277,121 @@
 </div>
 
 <!-- Modal Agregar Pelicula -->
-<div class="modal fade" id="agregarModalPelicula" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade"  id="agregarModalPelicula" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Agregar Pelicula</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                <div class="modal-body">
-                    <div class="row px-3">
 
-                        <div class="col-6 mb-3">
-                            <label for="titulo">Titulo(*):</label>
-                            <div class="input-group border w-100">
-                                <input type="text" class="form-control border-0" id="tituloPeliculaAgregar" name="titulo" required>
-                                <button class="btn" type="button" id="boton-x-titulo-agregar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                    </svg>
-                                </button>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data" id="formularioPeliculaAgregar">
+                                @csrf
+                                <div class="row px-3">
 
-                            </div>
-                            <span class="text-danger invisible" id="errorTituloAgregar"></span>
-                        </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="titulo">Titulo(*):</label>
+                                        <div class="input-group border w-100">
+                                            <input type="text" class="form-control border-0" id="tituloPeliculaAgregar" name="titulo" required min="1" max="30">
+                                            <button class="btn" type="button" id="boton-x-titulo-agregar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
+                                            </button>
 
-                        <div class="col-6 mb-3">
-                            <label for="año">Año(*):</label>
-                            <div class="input-group border w-100">
-                                <input type="number" class="form-control border-0" id="añoPeliculaAgregar" name="año" required min="1895" max="{{\Carbon\Carbon::today()->format('Y')}}">
-                                <button class="btn" type="button" id="boton-x-año-agregar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <span class="text-danger invisible" id="errorAñoAgregar"></span>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                            <label for="actor">Actor(*):</label>
-                            <div class="input-group border w-100">
-                                <select class="form-select border-0" aria-label="Default select example" required name="actor">
-                                    <option selected>Seleccione un Actor</option>
-                                    @foreach ($actores as $actor)
-                                    <option value="{{ $actor->ActorID }}">{{ $actor->Nombre}}</option>
-                                    @endforeach
-                                </select>
-
-                                <button class="btn" type="button" id="boton-x-actor-agregar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <span class="text-danger invisible" id="errorActorAgregar"></span>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                            <label for="sinopsis">Sinopsis(*):</label>
-                            <div class="input-group border w-100">
-                                <textarea class="form-control border-0" id="sinopsisAgregarActor" name="sinopsis" rows="3"></textarea>
-                                <button class="btn" type="button" id="boton-x-sinopsis-agregar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <span class="text-danger invisible" id="errorSinopsisAgregar"></span>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                            <label>Duracion(*):</label>
-                            <div class="row">
-                                <div class="col-4 mb-3">
-                                    <label for="hora">Horas:</label>
-                                    <div class="input-group border w-100">
-                                        <input type="number" class="form-control border-0" id="horaPeliculaAgregar" name="hora" required min="0" max="24">
-                                        <button class="btn" type="button" id="boton-x-hora-agregar">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                            </svg>
-                                        </button>
+                                        </div>
+                                        <span class="text-danger invisible" id="errorTituloAgregar"></span>
                                     </div>
-                                </div>
-                                <div class="col-4 mb-3">
-                                    <label for="minuto">Minutos:</label>
-                                    <div class="input-group border w-100">
-                                        <input type="number" class="form-control border-0" id="minutoPeliculaAgregar" name="minuto" required min="0" max="59">
-                                        <button class="btn" type="button" id="boton-x-minuto-agregar">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                            </svg>
-                                        </button>
+
+                                    <div class="col-6 mb-3">
+                                        <label for="año">Año(*):</label>
+                                        <div class="input-group border w-100">
+                                            <input type="number" class="form-control border-0" id="añoPeliculaAgregar" name="año" required min="1895" max="{{\Carbon\Carbon::today()->format('Y')}}">
+                                            <button class="btn" type="button" id="boton-x-año-agregar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
+                                            </button>
+
+                                        </div>
+                                        <span class="text-danger invisible" id="errorAñoAgregar"></span>
                                     </div>
-                                </div>
-                                <div class="col-4 mb-3">
-                                    <label for="segundo">Segundos:</label>
-                                    <div class="input-group border w-100">
-                                        <input type="number" class="form-control border-0" id="segundoPeliculaAgregar" name="segundo" required min="0" max="59">
-                                        <button class="btn" type="button" id="boton-x-segundo-agregar">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                                            </svg>
-                                        </button>
+
+                                    <div class="col-7 mb-3">
+                                        <label for="actor">Actor(*):</label>
+                                        <div class="input-group border w-100">
+                                            <select class="form-select border-0" aria-label="Default select example" required name="actor" id="actorPrincipalPeliculaAgregar">
+                                                <option value="" selected>Seleccione el Actor Principal</option>
+                                                @foreach ($actores as $actor)
+                                                <option value="{{ $actor->ActorID }}">{{ $actor->Nombre}}</option>
+                                                @endforeach
+                                            </select>
+
+                                            <button class="btn" type="button" id="boton-x-actor-agregar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
+                                            </button>
+
+                                        </div>
+                                        <span class="text-danger invisible" id="errorActorAgregar"></span>
                                     </div>
+
+                                    <div class="col-5 mb-3">
+                                        <label for="duracion">Duracion (en minutos)(*):</label>
+                                        <div class="input-group border w-100">
+                                            <input type="number" class="form-control border-0" id="duracionPeliculaAgregar" name="duracion" required min="1" max="600">
+                                            <button class="btn" type="button" id="boton-x-duracion-agregar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
+                                            </button>
+
+                                        </div>
+                                        <span class="text-danger invisible" id="errorDuracionAgregar"></span>
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <label for="sinopsis">Sinopsis(*):</label>
+                                        <div class="input-group border w-100">
+                                            <textarea class="form-control border-0" id="sinopsisPeliculaAgregar" name="sinopsis" rows="3" required minlength="3" maxlength="500"></textarea>
+                                            <button class="btn" type="button" id="boton-x-sinopsis-agregar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
+                                            </button>
+
+                                        </div>
+                                        <span class="text-danger invisible" id="errorSinopsisAgregar"></span>
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <label for="imagen">Imagen(*):</label>
+                                        <div class="input-group border w-100">
+                                            <input class="border-0 form-control" accept="image/*" type='file' id="imagenPeliculaAgregar" name="imagen"/>
+                                            <button class="btn align-self-end" type="button" id="boton-x-imagen-agregar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <img id="previewPeliculaAgregar" src="#" alt="Imagen" width="259" height="384"/>
+                                        </div>
+                                        <span class="text-danger invisible" id="errorImagenAgregar"></span>
+                                    </div>
+
                                 </div>
-                            </div>
-                            <span class="text-danger invisible" id="errorDuracionAgregar"></span>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" form="formularioPeliculaAgregar" class="btn btn-primary" id="agregarPelicula">Agregar Pelicula</button>
                         </div>
 
-                        <div class="col-12 mb-3">
-                            <label for="imagen">Imagen(*):</label>
-                            <div class="input-group border w-100">
-                                <input accept="image/*" type='file' id="imagenPeliculaAgregar" name="imagen"/>
-
-                            </div>
-                            <div class="text-center mt-2">
-                                <img id="preview" src="#" alt="Imagen" width="259" height="384"/>
-                            </div>
-                            <span class="text-danger invisible" id="errorImagenAgregar"></span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="agregarPelicula">Agregar Pelicula</button>
-                </div>
         </div>
+
     </div>
 </div>
 

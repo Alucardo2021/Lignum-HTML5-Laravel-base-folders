@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ActorController;
+use App\Http\Controllers\PeliculaController;
+use App\Http\Controllers\SuperUserController;
 use App\Models\Actor;
 use App\Models\Pelicula;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +26,17 @@ Route::get('/', function () {
 });
 
 
-Route::post('/actor/create', [ActorController::class, 'create']);
-Route::post('/actor/delete', [ActorController::class, 'delete']);
+Route::post('/actor/create', [SuperUserController::class, 'createActor']);
+Route::post('/actor/delete', [SuperUserController::class, 'deleteActor']);
 
-Route::get('/actor/find', [ActorController::class, 'find']);
-Route::post('/actor/edit', [ActorController::class, 'edit']);
-Route::get('/actor/all', [ActorController::class, 'getAllActores']);
+Route::get('/actor/find', [SuperUserController::class, 'findActor']);
+Route::post('/actor/edit', [SuperUserController::class, 'editActor']);
+
+
+
+
+Route::post('/pelicula/create', [SuperUserController::class, 'createPelicula']);
+Route::post('/pelicula/delete', [SuperUserController::class, 'deletePelicula']);
+
+Route::get('/pelicula/find', [SuperUserController::class, 'findPelicula']);
+Route::post('/pelicula/edit', [SuperUserController::class, 'editPelicula']);
