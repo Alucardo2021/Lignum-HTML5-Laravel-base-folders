@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index',[
+Route::get('/super', function () {
+    return view('super',[
         'peliculas' => Pelicula::all(),
         'actores' => Actor::all()
     ]);
@@ -37,6 +37,8 @@ Route::post('/actor/edit', [SuperUserController::class, 'editActor']);
 
 Route::post('/pelicula/create', [SuperUserController::class, 'createPelicula']);
 Route::post('/pelicula/delete', [SuperUserController::class, 'deletePelicula']);
+
+
 
 Route::get('/pelicula/find', [SuperUserController::class, 'findPelicula']);
 Route::post('/pelicula/edit', [SuperUserController::class, 'editPelicula']);

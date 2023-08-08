@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Actor;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,8 +21,8 @@ class PeliculaFactory extends Factory
         \App\Models\Actor::factory(1)->create()->get('ActorID');
         return [
             'Titulo' => fake()->words(random_int(1, 3), true),
-            'Año' => fake()->year(),
-            'Duracion' => fake()->time('H:i'),
+            'Año' => fake()->numberBetween(1895,Carbon::today()->format('Y')),
+            'Duracion' => fake()->numberBetween(1,600),
             'Sinopsis' => fake()->text(),
             'Imagen' => fake()->filePath(),
             'ActorPrincipalID' => Actor::all()->random()->ActorID

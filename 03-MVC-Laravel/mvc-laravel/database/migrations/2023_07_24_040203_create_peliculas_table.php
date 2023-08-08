@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('Pelicula', function (Blueprint $table) {
             $table->bigIncrements('PeliculaID');
             $table->string('Titulo');
-            $table->year('Año');
-            $table->time('Duracion');
+            $table->integer('Año');
+            $table->integer('Duracion');
             $table->text('Sinopsis');
             $table->string('Imagen');
             $table->unsignedBigInteger('ActorPrincipalID');
