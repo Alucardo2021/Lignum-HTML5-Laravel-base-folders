@@ -24,7 +24,7 @@ class PeliculaFactory extends Factory
             'Año' => fake()->numberBetween(1895,Carbon::today()->format('Y')),
             'Duracion' => fake()->numberBetween(1,600),
             'Sinopsis' => fake()->text(),
-            'Imagen' => fake()->filePath(),
+            'Imagen' => null,
             'ActorPrincipalID' => Actor::all()->random()->ActorID
         ];
     }

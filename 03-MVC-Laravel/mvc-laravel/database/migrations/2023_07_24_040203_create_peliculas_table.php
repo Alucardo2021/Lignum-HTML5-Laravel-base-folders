@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('Año');
             $table->integer('Duracion');
             $table->text('Sinopsis');
-            $table->string('Imagen');
+            $table->string('Imagen')->nullable();
             $table->unsignedBigInteger('ActorPrincipalID');
             $table->foreign('ActorPrincipalID')->references('ActorID')->on('Actor');
             $table->boolean('Favorito')->default(false);

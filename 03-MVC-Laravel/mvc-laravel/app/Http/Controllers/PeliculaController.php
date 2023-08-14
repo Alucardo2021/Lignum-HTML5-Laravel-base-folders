@@ -2,81 +2,147 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelicula;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PeliculaController extends Controller
 {
-    /* public function create(Request $request){
+    public function create(Request $request){
+
+        //arreglar
+        if($request['año']< 1895 || $request['año'] > Carbon::now()->format('Y')){
+            $request['año'] = null;
+        }
+        if($request['duracion']< 1 || $request['duracion'] > 600){
+            $request['duracion'] = null;
+        }
+        //fin arreglar
 
         $validated = $request->validate([
-            'nombre' => 'required|max:50|min:3',
-            'fecha' => 'required|before:'.\Carbon\Carbon::tomorrow()->format('Y-m-d')
+            'titulo' => 'required|max:30|min:1',
+            'año' => 'required',
+            'actor' => 'required|exists:Actor,ActorID',
+            'sinopsis' => 'required|max:500|min:3',
+            'duracion' => 'required|between:1,600',
+            'imagen' => 'required|file'
         ]);
 
-        $actor = new Actor();
 
-        $actor->Nombre = $validated['nombre'] ?? null;
-        $actor->FechaNacimiento = $validated['fecha'] ?? null;
-        $actor->save();
 
-        return $this->getForPrint();
+        $pelicula = new Pelicula();
+
+        $pelicula->Titulo = $validated['titulo'] ?? null;
+        $pelicula->Año = $validated['año'] ?? null;
+        $pelicula->ActorPrincipalID = $validated['actor'] ?? null;
+        $pelicula->Sinopsis = $validated['sinopsis'] ?? null;
+
+        $pelicula->Duracion = $validated['duracion'] ?? null;
+
+
+        $imagen = $validated['imagen'] ?? null;
+        $timestamp = Carbon::now()->getTimestampMs();
+        Storage::disk('local')->put('public/imagenesPeliculas/'.$timestamp.'.jpg', file_get_contents($imagen));
+        $pelicula->Imagen = asset("/storage/imagenesPeliculas/". $timestamp.".jpg");
+
+        $pelicula->save();
+
+        return $this->getForPrintPelicula();
     }
 
     public function delete(Request $request){
 
         $validated = $request->validate([
-            'ActorID' => 'required|exists:Actor,ActorID'
+            'PeliculaID' => 'required|exists:Pelicula,PeliculaID'
         ]);
 
-        $ActorID = $validated['ActorID'] ?? null;
+        $PeliculaID = $validated['PeliculaID'] ?? null;
 
-        $Actor = Actor::find($ActorID);
-        $Actor->delete();
+        $Pelicula = Pelicula::find($PeliculaID);
+        $Pelicula->delete();
 
-        return $this->getForPrint();
+        return $this->getForPrintPelicula();
     }
 
     public function find(Request $request){
 
         $validated = $request->validate([
-            'ActorID' => 'required|exists:Actor,ActorID'
+            'PeliculaID' => 'required|exists:Pelicula,PeliculaID'
         ]);
 
-        $ActorID = $validated['ActorID'] ?? null;
+        $PeliculaID = $validated['PeliculaID'] ?? null;
 
-        $Actor = Actor::find($ActorID);
+        $Pelicula = Pelicula::find($PeliculaID);
 
-        return response()->json($Actor);
+        return response()->json($Pelicula);
     }
 
     public function edit(Request $request){
 
+        //arreglar
+        if($request['año']< 1895 || $request['año'] > Carbon::now()->format('Y')){
+            $request['año'] = null;
+        }
+        if($request['duracion']< 1 || $request['duracion'] > 600){
+            $request['duracion'] = null;
+        }
+        //fin arreglar
+
         $validated = $request->validate([
-            'ActorID' => 'required|exists:Actor,ActorID',
-            'nombre' => 'required|max:50|min:3',
-            'fecha' => 'required|before:'.\Carbon\Carbon::tomorrow()->format('Y-m-d')
+            'titulo' => 'required|max:30|min:1',
+            'año' => 'required',
+            'actor' => 'required|exists:Actor,ActorID',
+            'sinopsis' => 'required|max:500|min:3',
+            'duracion' => 'required|between:1,600',
+            'imagen' => 'required',
+            'PeliculaID' => 'required|exists:Pelicula,PeliculaID',
+            'bandera' => 'required'
         ]);
 
-        $ActorID = $validated['ActorID'] ?? null;
-        $actor = Actor::find($ActorID);
+        $PeliculaID = $validated['PeliculaID'] ?? null;
 
-        $actor->Nombre = $validated['nombre'] ?? null;
-        $actor->FechaNacimiento = $validated['fecha'] ?? null;
-        $actor->update();
+        $pelicula = Pelicula::find($PeliculaID);
 
-        return $this->getForPrint();
-    }
+        $pelicula->Titulo = $validated['titulo'] ?? null;
+        $pelicula->Año = $validated['año'] ?? null;
+        $pelicula->ActorPrincipalID = $validated['actor'] ?? null;
+        $pelicula->Sinopsis = $validated['sinopsis'] ?? null;
 
-    public function getForPrint(){
-        $actores = new Collection();
+        $pelicula->Duracion = $validated['duracion'] ?? null;
 
-        foreach (Actor::all() as $a) {
-            $act = $a;
-            $act->PeliculasCount = $a->Peliculas()->count();
-            $actores->add($act);
+
+        $bandera = $validated['bandera'] ?? null;
+
+        if ($bandera == 0) {
+            $imagen = $validated['imagen'] ?? null;
+            $timestamp = Carbon::now()->getTimestampMs();
+            Storage::disk('local')->put('public/imagenesPeliculas/'.$timestamp.'.jpg', file_get_contents($imagen));
+            Storage::disk('local')->delete($pelicula->Imagen);
+            $pelicula->Imagen = asset("/storage/imagenesPeliculas/". $timestamp.".jpg");
         }
 
-        return response()->json($actores);
-    } */
 
+        $pelicula->update();
+
+        return $this->getForPrintPelicula();
+    }
+
+
+    public function getForPrintPelicula(){
+        $peliculas = new Collection();
+
+        foreach (Pelicula::all() as $p) {
+            $peli = $p;
+            if ($p->ActorPrincipal) {
+                $peli->NombreActor = $p->ActorPrincipal->Nombre;
+            }else{
+                $peli->NombreActor = "Actor Principal Eliminado";
+            }
+            $peliculas->add($peli);
+        }
+
+        return response()->json($peliculas);
+    }
 }

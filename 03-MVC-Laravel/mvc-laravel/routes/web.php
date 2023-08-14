@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\SuperUserController;
+use App\Http\Controllers\UserController;
 use App\Models\Actor;
 use App\Models\Pelicula;
 use Illuminate\Support\Facades\Route;
@@ -18,27 +19,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/super', function () {
-    return view('super',[
+
+/* Route::get('/', function () {
+    return view('index',[
         'peliculas' => Pelicula::all(),
         'actores' => Actor::all()
     ]);
-});
+}); */
 
 
-Route::post('/actor/create', [SuperUserController::class, 'createActor']);
-Route::post('/actor/delete', [SuperUserController::class, 'deleteActor']);
+Route::get('/user/peliculas',[UserController::class, 'indexPeliculas']);
+Route::get('/user/peliculas/favoritas',[UserController::class, 'indexPeliculasFavoritas']);
 
-Route::get('/actor/find', [SuperUserController::class, 'findActor']);
-Route::post('/actor/edit', [SuperUserController::class, 'editActor']);
-
-
+Route::get('/user/pelicula/{id}',[UserController::class, 'verPelicula']);
+Route::get('/user/peliculas/get',[UserController::class, 'obtenerPeliculas']);
 
 
-Route::post('/pelicula/create', [SuperUserController::class, 'createPelicula']);
-Route::post('/pelicula/delete', [SuperUserController::class, 'deletePelicula']);
+Route::get('/super/actores', [SuperUserController::class, 'indexAdminActores']);
+Route::get('/super/peliculas', [SuperUserController::class, 'indexAdminPeliculas']);
 
 
-
-Route::get('/pelicula/find', [SuperUserController::class, 'findPelicula']);
-Route::post('/pelicula/edit', [SuperUserController::class, 'editPelicula']);
+Route::post('super/peliculas/create', [PeliculaController::class, 'create']);
+Route::post('super/peliculas/delete', [PeliculaController::class, 'delete']);
+Route::get('super/peliculas/find', [PeliculaController::class, 'find']);
+Route::post('super/peliculas/edit', [PeliculaController::class, 'edit']);
